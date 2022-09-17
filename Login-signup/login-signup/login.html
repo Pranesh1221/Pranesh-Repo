@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        text-align: center;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+          Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+      }
+      .topimg {
+        margin-top: 30px;
+        margin-bottom: 25px;
+      }
+      #box {
+        /* border: 2px solid red; */
+
+        width: 35%;
+        margin: auto;
+
+        margin-top: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 20px;
+      }
+      input[type="text"] {
+        padding: 12px;
+        border-radius: 7px;
+        border: 1px solid rgb(225, 224, 224);
+        width: 80%;
+        font-size: 16px;
+      }
+      input[type="email"] {
+        padding: 12px;
+        border-radius: 7px;
+        border: 1px solid rgb(225, 224, 224);
+        width: 80%;
+        font-size: 16px;
+      }
+      .labe {
+        text-align: left;
+        margin: auto 40px 10px;
+        margin-top: 20px;
+        color: rgba(75, 85, 99);
+        font-size: 14px;
+        font-weight: 600;
+      }
+      input::placeholder {
+        color: rgba(209, 213, 219);
+        text-align: left;
+      }
+      .h {
+        padding: 1px;
+      }
+
+      .sppa {
+        color: #2c63eb;
+        text-decoration: none;
+      }
+      .footer {
+        color: rgb(187, 189, 192);
+        margin-top: 20px;
+      }
+      #login {
+        padding: 10px;
+        color: rgba(107, 114, 128);
+      }
+      .singupbtn {
+        background-color: rgb(227, 229, 234);
+        width: 85%;
+        cursor: pointer;
+        padding: 14px;
+        border-radius: 7px;
+        border: 1px solid rgb(227, 229, 234);
+        color: rgb(108, 109, 112);
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        margin-top: 35px;
+      }
+      #google button {
+        padding: 13px;
+        cursor: pointer;
+        border-radius: 7px;
+        width: 85%;
+        background-color: white;
+        border: 1px solid rgb(227, 229, 234);
+        font-weight: 600;
+      }
+      .googpic {
+        width: 5%;
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <img class="topimg" src="https://sso.masaischool.com/brand_dark.svg" />
+    <div id="box">
+      <div class="h"><h2>Sign In</h2></div>
+
+      <div>
+        <div class="labe"><label for="email">Email</label></div>
+        <div><input id="email" type="email" placeholder="Enter email" /></div>
+      </div>
+      <div>
+        <div class="labe">
+          <label for="password">Password</label>
+        </div>
+        <div>
+          <input id="password" type="text" placeholder="Enter password" />
+        </div>
+      </div>
+      <button class="singupbtn">SIGN UP</button>
+      <div id="google">
+        <button>
+          <img
+            class="googpic"
+            src="https://sso.masaischool.com/google.svg"
+          />CONTINUE WITH GOOGLE
+        </button>
+      </div>
+      <div id="login">
+        <p>
+          Don't have an account?
+          <a class="sppa" href="Sign-up.html">Sign Up</a>
+        </p>
+      </div>
+    </div>
+    <p class="footer">
+      © 2022 by Masai School Privacy Policy & Terms and Conditions
+    </p>
+  </body>
+</html>
+<script>
+  document.querySelector("button").addEventListener("click", loginFun);
+  function loginFun() {
+    var userArr = JSON.parse(localStorage.getItem("signup")) || [];
+    var emailU = document.getElementById("email").value;
+    var passwordU = document.getElementById("password").value;
+    var temp = userArr.filter(function (elem) {
+      return elem.email == emailU && elem.password == passwordU;
+    });
+    if (temp.length >= 1) {
+      alert("Login Succesfull");
+    } else {
+      alert("Wrong Credentials");
+    }
+  }
+</script>

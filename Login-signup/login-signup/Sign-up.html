@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        text-align: center;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+          Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+      }
+
+      #box {
+        /* border: 2px solid red; */
+
+        width: 35%;
+        margin: auto;
+
+        margin-top: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 20px;
+      }
+      input[type="text"] {
+        padding: 12px;
+        border-radius: 7px;
+        border: 1px solid rgb(225, 224, 224);
+        width: 80%;
+        font-size: 16px;
+        text-align: left;
+      }
+      input[type="email"] {
+        padding: 12px;
+        border-radius: 7px;
+        border: 1px solid rgb(225, 224, 224);
+        width: 80%;
+        font-size: 16px;
+        text-align: left;
+      }
+      .labe {
+        text-align: left;
+        margin: auto 40px 10px;
+        margin-top: 20px;
+        color: rgba(75, 85, 99);
+        font-size: 14px;
+        font-weight: 600;
+      }
+      input::placeholder {
+        color: rgba(209, 213, 219);
+        text-align: left;
+      }
+      .h {
+        padding: 5px;
+      }
+      #links p {
+        width: 90%;
+        margin: auto;
+        font-size: 13px;
+        color: rgba(107, 114, 128);
+        margin-top: 30px;
+        margin-bottom: 40px;
+      }
+      .sppa {
+        color: #2c63eb;
+      }
+      .footer {
+        color: rgb(187, 189, 192);
+        margin-top: 0px;
+      }
+      #login {
+        padding: 10px;
+      }
+      button {
+        background-color: rgb(227, 229, 234);
+        width: 85%;
+        cursor: pointer;
+        padding: 14px;
+        border-radius: 7px;
+        border: 1px solid rgb(227, 229, 234);
+        color: rgb(108, 109, 112);
+        font-size: 14px;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="https://sso.masaischool.com/brand_dark.svg" />
+    <div id="box">
+      <div class="h"><h2>Sign Up</h2></div>
+      <div>
+        <div class="labe"><label for="name"> Full Name</label></div>
+        <div>
+          <input id="name" type="text" placeholder="Enter your full name" />
+        </div>
+      </div>
+      <div>
+        <div class="labe"><label for="email">Email</label></div>
+        <div><input id="email" type="email" placeholder="Enter email" /></div>
+      </div>
+      <div>
+        <div class="labe">
+          <label for="password">Password</label>
+        </div>
+        <div>
+          <input id="password" type="text" placeholder="Enter password" />
+        </div>
+      </div>
+
+      <div id="links">
+        <p>
+          By sigining up ,I accept the Masai School
+          <span><a class="sppa" href="#">Terms of service</a> </span>and
+          ackowledge the
+          <span><a class="sppa" href="#">Privacy Policy</a> </span>
+        </p>
+      </div>
+      <button>SIGN UP</button>
+      <div id="login">
+        <p>
+          Already have an account? <a class="sppa" href="login.html">Sign In</a>
+        </p>
+      </div>
+    </div>
+    <p class="footer">
+      © 2022 by Masai School Privacy Policy & Terms and Conditions
+    </p>
+  </body>
+</html>
+<script>
+  document.querySelector("button").addEventListener("click", storeIt);
+  var arr = JSON.parse(localStorage.getItem("signup")) || [];
+  function storeIt() {
+    event.preventDefault();
+    var nameUser = document.getElementById("email").value;
+    var emailUser = document.getElementById("email").value;
+    var passwordUser = document.getElementById("password").value;
+    var same = JSON.parse(localStorage.getItem("signup")) || [];
+    var userSame = same.filter(function (elem) {
+      return elem.email == emailUser;
+    });
+    if (userSame.length >= 1) {
+      alert("User Already Exist");
+    } else {
+      var obj = {
+        name: nameUser,
+        email: emailUser,
+        password: passwordUser,
+      };
+      arr.push(obj);
+      localStorage.setItem("signup", JSON.stringify(arr));
+      document.getElementById("email").innerText = "";
+    }
+  }
+</script>
