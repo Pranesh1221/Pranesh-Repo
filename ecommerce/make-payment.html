@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      h1 {
+        text-align: center;
+        color: brown;
+      }
+      #payment {
+        /* border: 1px solid blue; */
+        width: 50%;
+        margin: auto;
+        margin-top: 50px;
+      }
+      #payment > div {
+        /* border: 1px solid red; */
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        padding: 30px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+      input[type="number"] {
+        padding: 8px 70px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border: 1px solid black;
+      }
+      input[type="date"] {
+        padding: 8px 95px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border: 1px solid black;
+      }
+      input[type="text"] {
+        padding: 8px 70px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border: 1px solid black;
+      }
+      label {
+        font-size: x-large;
+        text-align: left;
+      }
+      #payment button {
+        padding: 8px 135px;
+        margin-top: 10px;
+        border-radius: 10px;
+        background-color: green;
+        font-size: 15px;
+        border: 1px solid white;
+        cursor: pointer;
+      }
+      #payment button a {
+        text-decoration: none;
+        color: black;
+      }
+      #payment button:hover {
+        background-color: rgb(247, 160, 10);
+        border: 1px solid red;
+      }
+      #labe {
+        text-align: left;
+        margin-left: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Masai Gateway Payment</h1>
+    <div id="payment">
+      <div>
+        <div id="labe"><label for="cardnum">Card Number</label></div>
+        <div>
+          <input
+            id="cardnum"
+            type="number"
+            placeholder="Enter 16 digit card number"
+          />
+        </div>
+        <div id="labe"><label for="cvv">CVV</label></div>
+        <div><input id="cvv" type="number" placeholder="Enter your CVV" /></div>
+        <div id="labe"><label for="date">Expiry Date</label></div>
+        <div>
+          <input id="date" type="text" placeholder="Month / Year" />
+        </div>
+        <div id="labe"><label for="name">Name</label></div>
+        <div>
+          <input id="name" type="text" placeholder="Cradholder Name" />
+        </div>
+        <div>
+          <button><a href="Otp.html">Pay</a></button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  document.querySelector("button").addEventListener("click", paymentotp);
+
+  function paymentotp() {
+    event.preventDefault();
+    var cardN = document.getElementById("cardnum").value;
+    var cvv = document.getElementById("cvv").value;
+    if (cardN === "1234567891234567" && cvv === "123") {
+      window.open("otp.html", "_self");
+    } else {
+      alert("Please Fill Correct Credentials");
+    }
+    cardN.innerHTML = "";
+  }
+</script>

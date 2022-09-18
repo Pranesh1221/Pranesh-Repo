@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      h1 {
+        text-align: center;
+        color: brown;
+        margin-top: 80px;
+        font-size: xx-large;
+      }
+      #otp {
+        /* border: 1px solid red; */
+        width: 35%;
+        margin: auto;
+        text-align: center;
+        margin-top: 100px;
+        padding: 20px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+      #labe {
+        text-align: left;
+        margin-left: 30px;
+        font-size: xx-large;
+      }
+      input[type="number"] {
+        padding: 10px 150px;
+        border-radius: 15px;
+        border: 1px solid black;
+        margin-top: 10px;
+        margin-bottom: 30px;
+      }
+      button {
+        padding: 10px 120px;
+        border-radius: 15px;
+        border: 1px solid black;
+        background-color: green;
+        font-size: large;
+        cursor: pointer;
+      }
+      input[type="number"]:placeholder-shown {
+        font-size: large;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Masai Gateway Payment</h1>
+    <div id="otp">
+      <div id="labe"><label for="4digit">OTP</label></div>
+      <div>
+        <input id="4digit" type="number" placeholder="Enter 4 digit OTP" />
+      </div>
+      <div><button>Make Payment</button></div>
+    </div>
+  </body>
+</html>
+<script>
+  document.querySelector("button").addEventListener("click", otppay);
+  function otppay() {
+    var otp = document.getElementById("4digit").value;
+    if (otp == 1234) {
+      alert("Payment Successful");
+      setTimeout(function () {
+        window.open("Ecom.html", "_self");
+      }, 60);
+      localStorage.clear();
+    } else {
+      alert(" Please Enter Correct OTP");
+    }
+  }
+</script>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <style>
+      #nav {
+        border: 1px solid white;
+        display: flex;
+        justify-content: space-around;
+
+        width: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        background-color: white;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+          rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      }
+      #table {
+        display: flex;
+        gap: 100px;
+      }
+      #nav div a {
+        text-decoration: none;
+        font-size: 25px;
+      }
+      #cartBtn {
+        display: flex;
+        margin: 10px 10px;
+      }
+      #cartBtn a {
+        margin: 10px 10px;
+        padding: 0px 5px;
+        color: white;
+      }
+      #cartBtn button {
+        background-color: rgb(232, 57, 180);
+        border-radius: 10px;
+        border: 1px solid white;
+      }
+      #table a {
+        color: brown;
+      }
+      #nav + img {
+        width: 100%;
+        margin: auto;
+        height: 625px;
+        margin-top: 70px;
+      }
+      #cart {
+        /* border: 1px solid blue; */
+        display: flex;
+        margin-top: 90px;
+      }
+      #cart-item {
+        /* border: 1px solid red; */
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        gap: 30px;
+      }
+      #cart-item > div {
+        /* border: 2px solid pink; */
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+          rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        width: 90%;
+        margin: auto;
+      }
+      #cart-payment {
+        /* border: 2px solid purple; */
+        width: 30%;
+
+        margin: auto;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+          rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        position: fixed;
+        top: 90px;
+        right: 25px;
+      }
+      #apply-promo {
+        text-align: center;
+      }
+      #apply-promo > input {
+        padding: 8px 30px;
+        border-radius: 15px;
+        border: 1px solid black;
+      }
+      #apply-promo > input + button {
+        padding: 8px 20px;
+        border-radius: 15px;
+        border: 1px solid white;
+        background-color: green;
+        color: white;
+        cursor: pointer;
+      }
+      #apply-promo p:nth-child(1) {
+        font-size: 20px;
+        font-weight: 700;
+        color: blue;
+      }
+      #tamount {
+        font-size: 20px;
+        font-weight: 700;
+        color: black;
+      }
+      #total-price {
+        color: red;
+      }
+      #make-payment {
+        padding: 10px 40px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        border-radius: 15px;
+        border: 1px solid white;
+        background-color: rgb(249, 192, 2);
+      }
+      #make-payment a {
+        text-decoration: none;
+        color: white;
+        font-weight: 700;
+      }
+      #make-payment:hover {
+        background-color: rgb(105, 227, 29);
+        border: 2px solid green;
+      }
+      #make-payment a:hover {
+        color: black;
+      }
+      #cart-item button:last-child {
+        border-radius: 8px;
+        border: 1px solid;
+        padding: 5px 12px;
+        color: white;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="nav">
+      <div id="table">
+        <h3><a href="Ecom.html">Home</a></h3>
+        <h3><a href="mens.html">Mens</a></h3>
+        <h3><a href="women.html">Womens</a></h3>
+      </div>
+
+      <div id="cartBtn">
+        <button>
+          <a href="cart.html">Cart</a>
+        </button>
+      </div>
+    </div>
+    <div id="cart">
+      <div id="cart-item"></div>
+      <div id="cart-payment">
+        <div id="apply-promo">
+          <p>Apply Promo</p>
+          <input id="promo" type="text" placeholder="Enter Promo" />
+          <button>Submit</button>
+          <p id="tamount">Total Amount : <span id="total-price"> 0</span></p>
+          <button id="make-payment">
+            <a href="make-payment.html">Payment</a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  var cartArr = JSON.parse(localStorage.getItem("cart")) || [];
+  if (cartArr.length == 0) {
+    document.querySelector("h1").innerText = "Empty Cart";
+  } else {
+    displayProducts();
+    cartValue();
+  }
+
+  function displayProducts() {
+    document.getElementById("cart-item").innerHTML = "";
+    cartArr.map(function (elem, index) {
+      var div = document.createElement("div");
+
+      var image = document.createElement("img");
+      image.setAttribute("src", elem.image_url);
+      image.setAttribute("alt", index);
+
+      var head5 = document.createElement("h5");
+      head5.innerText = elem.name;
+
+      var Price = document.createElement("p");
+      Price.innerText = elem.price;
+
+      var addOne = document.createElement("button");
+      addOne.innerText = "+";
+      addOne.addEventListener("click", function () {
+        AddOne(index);
+      });
+
+      var ptag = document.createElement("p");
+      ptag.innerText = elem.quantity;
+      ptag.setAttribute("id", "counter");
+
+      var subOne = document.createElement("button");
+      subOne.innerText = "-";
+      subOne.addEventListener("click", function () {
+        SubOne(index);
+      });
+
+      var removeItem = document.createElement("button");
+      removeItem.innerText = "Remove";
+      removeItem.addEventListener("click", function () {
+        removeCart(index);
+      });
+
+      div.append(image, head5, Price, addOne, ptag, subOne, removeItem);
+      document.getElementById("cart-item").append(div);
+    });
+    cartValue();
+  }
+
+  function cartValue() {
+    var total = cartArr.reduce(function (acc, elem) {
+      return Number(acc + elem.price * elem.quantity);
+    }, 0);
+
+    document.getElementById("total-price").innerText = total;
+  }
+
+  document.querySelector("#promo+button").addEventListener("click", applypromo);
+  var val = true;
+
+  function applypromo() {
+    var promo = document.getElementById("promo").value;
+    var total = Number(document.getElementById("total-price").innerText);
+    if (promo == "masai30") {
+      alert("Applied Promo Succesful");
+      if (val) {
+        total -= (total * 30) / 100;
+        document.getElementById("total-price").innerText = total;
+        val = false;
+      }
+    } else {
+      alert("Enter Valid Promo");
+    }
+  }
+  function AddOne(index) {
+    let count = cartArr[index]["quantity"];
+    count = Number(count) + 1;
+    cartArr[index]["quantity"] = count;
+    console.log(cartArr);
+    localStorage.setItem("cart", JSON.stringify(cartArr));
+    displayProducts();
+  }
+  function SubOne(index) {
+    let count = cartArr[index]["quantity"];
+    if (count > 1) {
+      count = Number(count) - 1;
+      cartArr[index]["quantity"] = count;
+      console.log(cartArr);
+      localStorage.setItem("cart", JSON.stringify(cartArr));
+      displayProducts();
+    }
+  }
+  function removeCart(index) {
+    cartArr.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cartArr));
+    displayProducts(cartArr);
+    cartValue();
+  }
+</script>
