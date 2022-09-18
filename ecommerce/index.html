@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #nav {
+        border: 1px solid white;
+        display: flex;
+        justify-content: space-around;
+
+        width: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        background-color: white;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+          rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      }
+      #table {
+        display: flex;
+        gap: 100px;
+      }
+      #nav div a {
+        text-decoration: none;
+        font-size: 25px;
+      }
+      #cartBtn {
+        display: flex;
+        margin: 10px 10px;
+      }
+      #cartBtn a {
+        margin: 10px 10px;
+        padding: 0px 5px;
+        color: white;
+      }
+      button {
+        background-color: rgb(232, 57, 180);
+        border-radius: 10px;
+        border: 1px solid white;
+      }
+      #table a {
+        color: brown;
+      }
+      #nav + img {
+        width: 100%;
+        margin: auto;
+        height: 625px;
+        margin-top: 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="nav">
+      <div id="table">
+        <h3><a href="Ecom.html">Home</a></h3>
+        <h3><a href="mens.html">Mens</a></h3>
+        <h3><a href="women.html">Womens</a></h3>
+      </div>
+
+      <div id="cartBtn">
+        <button>
+          <a href="cart.html">Cart</a>
+        </button>
+      </div>
+    </div>
+    <img
+      class="back"
+      src="https://static.vecteezy.com/system/resources/previews/000/688/908/original/flash-sale-banner-template-with-shopping-bags-vector.jpg"
+    />
+  </body>
+</html>
